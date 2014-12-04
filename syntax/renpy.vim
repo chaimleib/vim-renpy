@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:	Renpy script
 " Maintainer:	MusashiAharon <astrochess@gmail.com>
-" Last Change:	2011 Oct 9
+" Last Change:	2014 Dec 4
 " Features:	Spell-checking (must enable), auto-indenting, TODOs, string tags and interpolations
 
 " Based on work by Spiky Caterpillar, http://spikycaterpillar.com/renpy.vim
