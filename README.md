@@ -34,7 +34,9 @@ to `~/.vimrc` as well.
 Credits
 -------
 * Based on Spiky Caterpillar's [renpy.vim][SC renpy.vim]
+* Modifications from [disolovyov's vim-renpy][D vim-renpy]
 
 [Renpy]: http://www.renpy.org/
 [SC renpy.vim]: http://spikycaterpillar.com/renpy.vim
+[D vim-renpy]: https://github.com/disolovyov/vim-renpy
 
