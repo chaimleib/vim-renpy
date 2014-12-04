@@ -29,7 +29,7 @@ syn match renpyNumber "-\?\.\d\+"
 syn match renpyIdentifier "[_a-zA-Z][_a-zA-Z0-9]*"
 
 " String commands and escaped characters
-syn match renpyEscape +\\['"%]+ contained 
+syn match renpyEscape +\\['"%]+ contained
 syn match renpyEscape +{/\?[ibsu]}+ contained
 syn match renpyEscape +{/\?plain}+ contained
 syn match renpyEscape +{\(p\|fast\|nw\|w\)}+ contained
@@ -63,32 +63,119 @@ syn keyword renpyTodo FIXME TODO NOTE NOTES XXX contained
 syn match renpySpaceError "\t"
 
 " Operators, keywords and special functions
-syn keyword renpyStatement init image python early transform
-syn keyword renpyStatement hide show scene
-syn keyword renpyStatement menu jump call
-syn keyword renpyStatement define return
-syn keyword renpyOperator with at from 
-syn keyword renpyOperator behind fadein fadeout expression 
-syn keyword renpyOperator channel frames loop alpha
-syn keyword renpyOperator xpos ypos xanchor yanchor zoom xzoom yzoom xalign yalign
-syn keyword renpyStatement play stop queue
-syn keyword renpyOperator sound music
-syn keyword renpyFunction Dissolve DynamicDisplayable Fade Fixed Frame
-syn keyword renpyFunction Pause
-syn keyword renpyFunction ImageDissolve Position RotoZoom 
-syn keyword renpyFunction Solid SplineMotion Style Text
+""" Block
+syn keyword renpyStatement init python early transform screen
+""" Text
+syn keyword renpyFunction Style Text
+""" Image
+syn keyword renpyStatement image hide show scene with
+syn keyword renpyOperator as at behind onlayer zorder
+""" Flow Control
+syn keyword renpyStatement menu jump call return
+syn keyword renpyStatement if elif else
 syn match renpyStatement "label" display nextgroup=renpyIdentifier skipwhite
+""" Sound Voice & Music
+syn keyword renpyStatement play stop queue
+syn keyword renpyOperator channel frames loop
+syn keyword renpyStatement voice sustain
+syn keyword renpyOperator sound music
+syn keyword renpyOperator fadein fadeout
+""" Other
+syn keyword renpyStatement define
+syn keyword renpyOperator expression
+
+" ATL
+
+""" ATL: on & event Statenent
+syn keyword renpyStatement event
+syn match renpyStatement /on/ nextgroup=renpyEvent skipwhite
+syn match renpyEvent / \(start\|show\|hide\|replace\|replaced\|hover\|idle\|selected_hover\|selected_idle\)/ contained
+""" ATL: Interpolation Statemant & Warpers
+syn keyword renpyStatement pause linear ease easein easeout
+""" ATL: Circular Motion
+syn keyword renpyOperator warp knot clockwise counterclockwise circles
+""" ATL: Block (complex) Statement
+syn keyword renpyStatement choice function parallel block
+syn match renpyStatement /contains/
+""" ATL: simple Statement
+syn keyword renpyStatement time pass repeat
+""" ATL: Displayable Transform Properties
+syn keyword renpyOperator pos xpos ypos
+syn keyword renpyOperator anchor xanchor yanchor
+syn keyword renpyOperator align xalign yalign
+syn keyword renpyOperator xcenter ycenter
+syn keyword renpyOperator flip rotate rotate_pad
+syn keyword renpyOperator zoom xzoom yzoom
+syn keyword renpyOperator alpha
+syn keyword renpyOperator around alignaround
+syn keyword renpyOperator angle radius
+syn keyword renpyOperator crop corner1 corner2
+syn keyword renpyOperator size
+syn keyword renpyOperator subpixel
+syn keyword renpyOperator delay
+
+" Screen
+
+""" Screen: UI Statement properties
+syn keyword renpyOperator at default id style style_group focus
+""" Screen: UI Statement
+syn keyword renpyStatement add
+syn keyword renpyStatement bar vbar
+syn keyword renpyStatement button textbutton imagebutton mousearea imagemap
+syn keyword renpyStatement fixed frame grid hbox vbox side window null
+syn keyword renpyStatement input key timer transform
+syn keyword renpyStatement viewport hotspot hotbar
+syn keyword renpyStatement label text
+syn keyword renpyStatement has
+""" Screen: Control Statement
+syn keyword renpyStatement default for if elif else use on
+syn keyword renpyOperator in not
+
+
+" Function
+
+""" Transition Function
+syn keyword renpyFunction AlphaDissolve ComposeTransition CropMove Dissolve
+syn keyword renpyFunction Fade ImageDissolve MoveTransition MultipleTransition
+syn keyword renpyFunction Pause Pixellate
+syn keyword renpyFunction Position RotoZoom
+syn keyword renpyFunction SplineMotion
+""" Displayable Function
+syn keyword renpyFunction Image Frame LiveCrop LiveTile Null Solid
+syn keyword renpyFunction ConditionSwitch DynamicDisplayable ShowingSwitch
+syn keyword renpyFunction Fixed HBox VBox
+""" Other Image Function
+syn keyword renpyFunction At AlphaBlend
 
 " Special variables
-syn keyword renpyBuiltin left right center 
-syn keyword renpyBuiltin moveinright moveinleft moveoutright moveoutleft 
-syn keyword renpyBuiltin moveoutbottom moveinbottom moveouttop moveintop
-syn keyword renpyBuiltin bg black text pause linear
-syn keyword renpyBuiltin dissolve fade hpunch vpunch rotate flip
 
+""" Default Transforms
+syn keyword renpyBuiltin left right center truecenter topleft top topright
+syn keyword renpyBuiltin offscreenleft offscreenright default reset
+""" Pre-Defined Transitions
+syn keyword renpyBuiltin fade dissolve pixellate
+syn keyword renpyBuiltin move moveinright moveinleft moveintop moveinbottom
+syn keyword renpyBuiltin moveoutright moveoutleft moveouttop moveoutbottom
+syn keyword renpyBuiltin ease easeinright easeinleft easeintop easeinbottom
+syn keyword renpyBuiltin easeoutright easeoutleft easeouttop easeoutbottom
+syn keyword renpyBuiltin zoomin zoomout zoominout
+syn keyword renpyBuiltin vpunch hpunch
+syn keyword renpyBuiltin blinds squares
+syn keyword renpyBuiltin wipeleft wiperight wipeup wipedown
+syn keyword renpyBuiltin slideleft slideright slideup slidedown
+syn keyword renpyBuiltin slideawayleft slideawayright slideawayup slideawaydown
+syn keyword renpyBuiltin irisin irisout
+""" Pre-Defined Displayable
+syn keyword renpyBuiltin bg black text pause linear
 
 " Python lines ($)
 syn region pythonStatement start="\$" end="$" contains=@Python
+" syn match pythonStatement /^ *\$ /
+" syn region None start=/^ *\$ / end=/$/ contains=@Python
+
+" Python block
+" FIXME: Not work
+" syn region None start=/\( *\)[ \S]*?python[ \S]*?:$/ end=// contains=@Python
 
 " Renpy-specific Python functions and variables
 syn keyword pythonFunction Animation Character Null
@@ -147,5 +234,7 @@ hi def link renpyBuiltin	Identifier
 hi def link renpyIdentifier Identifier
 hi def link renpyOperator	Operator
 hi def link renpySpaceError	Error
+hi def link renpyEvent      Identifier
 
 let b:current_syntax = "renpy"
+
