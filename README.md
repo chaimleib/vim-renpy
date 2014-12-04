@@ -7,7 +7,7 @@ Installing
 ----------
 There are three components to installing a Vim syntax file: 
 
-1. The syntax file itself, and 
+1. The syntax file itself.
 2. The filetype recognizer. This notices when a .rpy file is loaded and tells vim to use the correct syntax file.
 3. Syntax highlighting is enabled in Vim.
 
