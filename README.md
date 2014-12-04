@@ -22,7 +22,7 @@ if filereadable(file)
 endif
 ```
 
-If you haven't so already, add
+If you haven't done so already, add
 
 ```
 syntax on
