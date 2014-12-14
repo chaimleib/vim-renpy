@@ -78,4 +78,6 @@ label early:
     image black = blackColor
     define slowDissolve = Dissolve(1)
     $ from mypkg import stuff, more_stuff
-
+    python:
+        myvar = True
+        exc = NotImplementedError
