@@ -96,7 +96,7 @@ syn keyword renpyStatement pause linear ease easein easeout
 syn keyword renpyOperator warp knot clockwise counterclockwise circles
 """ ATL: Block (complex) Statement
 syn keyword renpyStatement choice function parallel block
-syn match renpyStatement /contains/
+syn keyword renpyStatement contains
 """ ATL: simple Statement
 syn keyword renpyStatement time pass repeat
 """ ATL: Displayable Transform Properties
