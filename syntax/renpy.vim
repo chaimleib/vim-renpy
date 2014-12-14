@@ -181,6 +181,7 @@ syn match renpyPythonStatementMarker /\$/
 " Renpy-specific Python functions and variables
 syn keyword pythonFunction Animation Character Null
 syn keyword pythonFunction ShowingSwitch
+syn keyword pythonBuiltin config
 syn match pythonFunction "anim\.\(Edge\|SMAnimation\|State\|TransitionAnimation\)"
 syn match pythonFunction "anim\.Filmstrip"
 syn match pythonFunction "im\.Composite"
