@@ -1,5 +1,5 @@
 
-n this file all the functions and classes related to AI are collected.
+# In this file all the functions and classes related to AI are collected.
 
 init python:
     import itertools  # Mess around with iterables (like lists)
@@ -52,4 +52,22 @@ init python:
                 # Failsafe
                 if pship < 1:
                     phip.damage_estimation = [None, 0, 0]
+
+init:
+    image black = blackColor
+    define slowDissolve = Dissolve(1)
+    $ from mypkg import stuff, more_stuff
+
+init -1:
+    image black = blackColor
+    define slowDissolve = Dissolve(1)
+    $ from mypkg import stuff, more_stuff
+early:
+    image black = blackColor
+    define slowDissolve = Dissolve(1)
+    $ from mypkg import stuff, more_stuff
+label early:
+    image black = blackColor
+    define slowDissolve = Dissolve(1)
+    $ from mypkg import stuff, more_stuff
 
