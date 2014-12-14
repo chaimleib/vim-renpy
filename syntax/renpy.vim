@@ -28,6 +28,27 @@ set expandtab
 syn match renpyComment "#.*$" contains=renpyTodo,@Spell
 syn keyword renpyTodo FIXME TODO NOTE NOTES XXX contained
 
+"Python block headers
+syn region renpyPythonBlockHeader
+\ start="^\(init\|early\)"
+\ end=":"me=s-1
+\ oneline
+\ contains=renpyPythonBlockHeaderType,renpyPythonBlockHeaderPriority,renpyPythonBlockHeaderPython
+\ contained
+
+syn match renpyPythonBlockHeaderType /init\|early/
+\ nextgroup=renpyPythonBlockHeaderPriority,renpyPythonBlockHeaderPython
+\ contained
+\ skipwhite
+
+syn match renpyPythonBlockHeaderPriority /-\?\d\+/
+\ nextgroup=renpyPythonBlockHeaderPython
+\ contained
+\ skipwhite
+
+syn match renpyPythonBlockHeaderPython /python/
+\ contained
+\ skipwhite
 "Python blocks
 syn region renpyPythonBlock
 \ start="^\(\(init\|early\) \+\(-\?\d\+ \+\)\?\)python\( \+hide\)\? *:"
@@ -36,6 +57,25 @@ syn region renpyPythonBlock
 \ keepend
 \ matchgroup=renpyPythonBlock
 \ contains=@Python,renpyPythonBlockHeader
+
+"Renpy block headers
+syn region renpyBlockHeader oneline contained
+\ start="^\(init\|early\)"
+\ end=":"
+\ contains=renpyBlockHeaderType,renpyBlockHeaderPriority
+
+syn region renpyBlockHeader oneline contained
+\ start="^label"
+\ end=":"
+\ contains=renpyBlockHeaderLabel,renpyIdentifier
+
+syn match renpyBlockHeaderType /init\|early/ contained skipwhite
+\ nextgroup=renpyBlockHeaderPriority
+
+syn match renpyBlockHeaderPriority /-\?\d\+/ contained skipwhite
+
+syn match renpyBlockHeaderLabel /label/ contained skipwhite
+\ nextgroup=renpyIdentifier
 
 "Renpy blocks
 syn region renpyBlockEarlyInit
