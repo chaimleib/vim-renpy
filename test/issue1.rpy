@@ -1,6 +1,14 @@
 
 # In this file all the functions and classes related to AI are collected.
 
+
+early python:
+    import itertools  # Mess around with iterables (like lists)
+early -1 python:
+    import itertools  # Mess around with iterables (like lists)
+    # This module provides an implementation of the heap queue 
+init -2 python:
+    import itertools  # Mess around with iterables (like lists)
 init python:
     import itertools  # Mess around with iterables (like lists)
     # This module provides an implementation of the heap queue 
