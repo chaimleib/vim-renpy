@@ -22,7 +22,7 @@ unlet b:current_syntax
 set tabstop=4
 set shiftwidth=4
 set expandtab
- 
+
 
 "Comments
 syn match renpyComment "#.*$" contains=renpyTodo,@Spell
@@ -68,7 +68,7 @@ syn keyword renpyStatement transform screen
 """ Text
 syn keyword renpyFunction Style Text
 """ Image
-syn keyword renpyStatement image hide show scene 
+syn keyword renpyStatement image hide show scene
 syn keyword renpyOperator with
 syn keyword renpyOperator as at behind onlayer zorder
 """ Flow Control
@@ -92,8 +92,10 @@ syn keyword renpyOperator expression
 
 """ ATL: on & event Statenent
 syn keyword renpyStatement event
-syn match renpyStatement /on/ nextgroup=renpyEvent skipwhite
-syn match renpyEvent / \(start\|show\|hide\|replace\|replaced\|hover\|idle\|selected_hover\|selected_idle\)/ contained
+syn keyword renpyStatement on nextgroup=renpyEvent skipwhite
+syn keyword renpyEvent start show hide contained
+syn keyword renpyEvent replace replaced
+syn keyword renpyEvent hover idle selected_hover selected_idle contained
 """ ATL: Interpolation Statemant & Warpers
 syn keyword renpyStatement pause linear ease easein easeout
 """ ATL: Circular Motion
@@ -225,13 +227,13 @@ syn match pythonFunction "ui\.\(vbox\|window\)"
 
 
 "Renpy block headers
-syn region renpyHeader oneline
+syn region renpyHeader oneline keepend
     \ start="^\s*\(init\|early\|transform\|label\|animate\)"
     \ end=":"
     \ contains=renpyHeaderFByPriority,renpyHeaderFById,renpyHeaderPriority,renpyIdentifier, renpyArgs
 
 ""label/transform <identifier> <args>
-syn keyword renpyHeaderFById label transform animate  contained skipwhite 
+syn keyword renpyHeaderFById label transform animate  contained skipwhite
     \ nextgroup=renpyHeaderIdentifier
 
 syn match renpyHeaderIdentifier contained transparent /[_a-zA-Z][_a-zA-Z0-9]*/
@@ -249,14 +251,54 @@ syn match renpyHeaderPriority /-\?\d\+/ contained skipwhite
     \ nextgroup=renpyHeaderPython
 
 "Python blocks
-syn region renpyPythonHeader oneline
-    \ start="^\s*\([^ ]\+ \+\)*python"
+"TODO: find better way to handle indents
+""Indent level 0
+syn region renpyPythonBlock0 keepend
+    \ start="^\(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
+    \ end="^[^ ]"me=s-1
+    \ contains=@Python,renpyPythonHeader0,pythonComment
+
+syn region renpyPythonHeader0 oneline contained
+    \ start="^\([^ ]\+ \+\)*python"
     \ end=":"
     \ contains=renpyHeaderFByPriority,renpyHeaderPriority,renpyHeaderPython,renpyHeaderModifier
-    \ nextgroup=renpyPythonBlock
+
+"Indent level 1
+syn region renpyPythonBlock1 keepend
+    \ start="^    \(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
+    \ end="^[^ ]"me=s-1
+    \ contains=@Python,renpyPythonHeader1,pythonComment
+
+syn region renpyPythonHeader1 oneline contained
+    \ start="^    \([^ ]\+ \+\)*python"
+    \ end=":"
+    \ contains=renpyHeaderFByPriority,renpyHeaderPriority,renpyHeaderPython,renpyHeaderModifier
+
+"Indent level 2
+syn region renpyPythonBlock2 keepend
+    \ start="^        \(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
+    \ end="^[^ ]"me=s-1
+    \ contains=@Python,renpyPythonHeader2,pythonComment
+
+syn region renpyPythonHeader2 oneline contained
+    \ start="^        \([^ ]\+ \+\)*python"
+    \ end=":"
+    \ contains=renpyHeaderFByPriority,renpyHeaderPriority,renpyHeaderPython,renpyHeaderModifier
+
+"Indent level 3
+syn region renpyPythonBlock3 keepend
+    \ start="^        \(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
+    \ end="^[^ ]"me=s-1
+    \ contains=@Python,renpyPythonHeader3,pythonComment
+
+syn region renpyPythonHeader3 oneline contained
+    \ start="^        \([^ ]\+ \+\)*python"
+    \ end=":"
+    \ contains=renpyHeaderFByPriority,renpyHeaderPriority,renpyHeaderPython,renpyHeaderModifier
+
+
 syn keyword renpyHeaderPython python nextgroup=renpyHeaderModifier
 syn keyword renpyHeaderModifier hide early
-
 
 ""Python block headers
 "syn region renpyPythonBlockHeader oneline contained
