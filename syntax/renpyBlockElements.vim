@@ -1,11 +1,17 @@
 " Vim syntax file
-" Language:	Renpy script - Internal Renpy Elements
+" Language:	Renpy-Internal
 " Maintainer:	MusashiAharon <astrochess@gmail.com>
-" Last Change:	2014 Dec 4
+" Last Change:	2014 Dec 14
 " Features:	Spell-checking (must enable), auto-indenting, TODOs, string tags and interpolations
 
 " Based on work by Spiky Caterpillar, http://spikycaterpillar.com/renpy.vim
 
+
+if version < 600
+  syntax clear
+elseif exists("b:current_syntax")
+  finish
+endif
 
 syn include @Python syntax/python.vim
 unlet b:current_syntax
