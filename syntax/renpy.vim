@@ -174,9 +174,11 @@ syn keyword renpyBuiltin irisin irisout
 """ Pre-Defined Displayable
 syn keyword renpyBuiltin bg black text pause linear
 
+
 " Python lines ($)
-syn region renpyPythonStatement start="\s*\$" end="$" contains=@Python,renpyPythonStatementMarker
-syn match renpyPythonStatementMarker /\$/
+syn region renpyPythonStatement start="^ *\$" end="$" contains=@Python,renpyPythonStatementMarker
+syn match renpyPythonStatementMarker /^ *\$/
+
 
 " Renpy-specific Python functions and variables
 syn keyword pythonFunction Animation Character Null
@@ -226,7 +228,6 @@ syn match pythonFunction "ui\.timer"
 syn match pythonFunction "ui\.\(vbox\|window\)"
 
 
-
 "Renpy block headers
 syn region renpyHeader oneline keepend
     \ start="^\s*\(init\|early\|transform\|label\|animate\)"
@@ -251,6 +252,7 @@ syn match renpyHeaderFByPriority /init\|early/ contained skipwhite
 syn match renpyHeaderPriority /-\?\d\+/ contained skipwhite
     \ nextgroup=renpyHeaderPython
 
+
 "Python blocks
 "TODO: find better way to handle indents
 ""Indent level 0
@@ -268,7 +270,7 @@ syn region renpyPythonHeader0 oneline contained
 "Indent level 1
 syn region renpyPythonBlock1 keepend
     \ start="^    \(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
-    \ end="^[^ ]"me=s-1
+    \ end="^    [^ ]"me=s-1
     \ skip="^ *#.*$"
     \ contains=@Python,renpyPythonHeader1,pythonComment
 
@@ -280,7 +282,7 @@ syn region renpyPythonHeader1 oneline contained
 "Indent level 2
 syn region renpyPythonBlock2 keepend
     \ start="^        \(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
-    \ end="^[^ ]"me=s-1
+    \ end="^        [^ ]"me=s-1
     \ skip="^ *#.*$"
     \ contains=@Python,renpyPythonHeader2,pythonComment
 
@@ -292,7 +294,7 @@ syn region renpyPythonHeader2 oneline contained
 "Indent level 3
 syn region renpyPythonBlock3 keepend
     \ start="^            \(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
-    \ end="^[^ ]"me=s-1
+    \ end="^            [^ ]"me=s-1
     \ skip="^ *#.*$"
     \ contains=@Python,renpyPythonHeader3,pythonComment
 
