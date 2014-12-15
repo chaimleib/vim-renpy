@@ -291,51 +291,19 @@ syn region renpyPythonHeader2 oneline contained
 
 "Indent level 3
 syn region renpyPythonBlock3 keepend
-    \ start="^        \(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
+    \ start="^            \(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
     \ end="^[^ ]"me=s-1
     \ skip="^ *#.*$"
     \ contains=@Python,renpyPythonHeader3,pythonComment
 
 syn region renpyPythonHeader3 oneline contained
-    \ start="^        \([^ ]\+ \+\)*python"
+    \ start="^            \([^ ]\+ \+\)*python"
     \ end=":"
     \ contains=renpyHeaderFByPriority,renpyHeaderPriority,renpyHeaderPython,renpyHeaderModifier
 
 
 syn keyword renpyHeaderPython python nextgroup=renpyHeaderModifier
 syn keyword renpyHeaderModifier hide early
-
-""Python block headers
-"syn region renpyPythonBlockHeader oneline contained
-"\ start="^\(init\|early\)"
-"\ end=":"
-"\ contains=renpyPythonBlockHeaderType,renpyPythonBlockHeaderPriority,renpyPythonBlockHeaderPython
-"
-"syn region renpyPythonBlockHeader oneline contained
-"\ start="^\(    \)*python"
-"\ end=":"
-"\ contains=renpyPythonBlockHeaderType,renpyPythonBlockHeaderPriority,renpyPythonBlockHeaderPython
-"
-"syn match renpyPythonBlockHeaderType /init\|early/ contained skipwhite
-"\ nextgroup=renpyPythonBlockHeaderPriority,renpyPythonBlockHeaderPython
-"
-"syn match renpyPythonBlockHeaderPriority /-\?\d\+/ contained skipwhite
-"\ nextgroup=renpyPythonBlockHeaderPython
-"
-"syn match renpyPythonBlockHeaderPython /python/ contained skipwhite
-""Python blocks
-"syn region renpyPythonBlock keepend matchgroup=renpyPythonBlock
-"\ start="^\(    \)*\(\(init\|early\) \+\(-\?\d\+ \+\)\?\)python\( \+hide\)\? *:"
-"\ skip="^#"
-"\ end=/^[^ ]/me=s-1
-"\ contains=@Python,renpyPythonBlockHeader
-"
-"syn region renpyPythonBlock keepend matchgroup=renpyPythonBlock
-"\ start="\([^ ]\+ \+\)*python *: *$"
-"\ skip="^#"
-"\ end=/^[^ ]/me=s-1
-"\ contains=@Python,renpyPythonBlockHeader
-"
 
 "Highlight clusters for headers
 hi def link renpyHeaderFByPriority  renpyHeaderKeyword
