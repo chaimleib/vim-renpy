@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:	Renpy script
 " Maintainer:	MusashiAharon <astrochess@gmail.com>
-" Last Change:	2014 Dec 14
+" Last Change:	2014 Dec 15
 " Features:	Spell-checking (must enable), auto-indenting, TODOs, string tags and interpolations
 
 " Based on work by Spiky Caterpillar, http://spikycaterpillar.com/renpy.vim
@@ -257,6 +257,7 @@ syn match renpyHeaderPriority /-\?\d\+/ contained skipwhite
 syn region renpyPythonBlock0 keepend
     \ start="^\(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
     \ end="^[^ ]"me=s-1
+    \ skip="^ *#.*$"
     \ contains=@Python,renpyPythonHeader0,pythonComment
 
 syn region renpyPythonHeader0 oneline contained
@@ -268,6 +269,7 @@ syn region renpyPythonHeader0 oneline contained
 syn region renpyPythonBlock1 keepend
     \ start="^    \(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
     \ end="^[^ ]"me=s-1
+    \ skip="^ *#.*$"
     \ contains=@Python,renpyPythonHeader1,pythonComment
 
 syn region renpyPythonHeader1 oneline contained
@@ -279,6 +281,7 @@ syn region renpyPythonHeader1 oneline contained
 syn region renpyPythonBlock2 keepend
     \ start="^        \(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
     \ end="^[^ ]"me=s-1
+    \ skip="^ *#.*$"
     \ contains=@Python,renpyPythonHeader2,pythonComment
 
 syn region renpyPythonHeader2 oneline contained
@@ -290,6 +293,7 @@ syn region renpyPythonHeader2 oneline contained
 syn region renpyPythonBlock3 keepend
     \ start="^        \(\(init\|early\)\s\+\(-\?\d\+\s\+\)\?\)\?python.*:"
     \ end="^[^ ]"me=s-1
+    \ skip="^ *#.*$"
     \ contains=@Python,renpyPythonHeader3,pythonComment
 
 syn region renpyPythonHeader3 oneline contained
