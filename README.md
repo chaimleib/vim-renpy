@@ -15,14 +15,13 @@ There are three components to installing a Vim syntax file:
 Generally speaking, the syntax folder can be put anywhere, but a suggested location is `~/.vim/syntax/`. Create the folders if they don't exist already, then copy `./syntax/renpy.vim` to your personal `syntax` folder.
 
 ### Step 2
-To install the filetype reconizer, we just need to make sure that the contents of `filetypes.vim` are executed when Vim starts up. A flexible way to do this is to put filetypes.vim in `~/.vim/filetypes.vim`, and then adding this to `~/.vimrc`:
+To install the filetype reconizer, we just need to make sure that the contents of `filetype.vim` are executed when Vim starts up. A flexible way to do this is to append `filetype.vim` to `~/.vim/filetype.vim`, creating the file if needed:
 
 ```
-let file=expand("~/.vim/filetypes.vim")
-if filereadable(file)
-    silent! execute 'source '.file
-endif
+cat filetype.vim >> ~/.vim/filetype.vim
 ```
+
+Vim automatically executes this file when it starts up.
 
 ### Step 3
 If you haven't done so already, add
