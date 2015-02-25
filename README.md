@@ -3,27 +3,28 @@ vim-renpy
 
 Vim syntax highlighting for [Renpy][] script files.
 
-Installing
-----------
+Installation
+------------
+
+### [NeoBundle](https://github.com/Shougo/neobundle.vim)
+Just add the following line in your `.vimrc`:
+
+```
+NeoBundle 'chaimleib/vim-renpy'
+```
+
+### Manual Installation
 There are three components to installing a Vim syntax file:
 
-1. The syntax file itself (`./syntax/renpy.py`)
-2. The filetype recognizer (`./filetypes.vim`). This notices when a .rpy file is loaded and tells vim to use the correct syntax file.
-3. Syntax highlighting is enabled in Vim. (`syntax on`)
+1. `./syntax/renpy.vim` - the syntax highlighting file.
+2. `./ftdetect/renpy.vim` - detects when a `.rpy` file is loaded and tells vim to use the correct syntax file.
+3. Make sure `syntax on` is in your `.vimrc` file.
 
 ### Step 1
-Generally speaking, the syntax folder can be put anywhere, but a suggested location is `~/.vim/syntax/`. Create the folders if they don't exist already, then copy `./syntax/renpy.vim` to your personal `syntax` folder.
+Clone or download this repository and copy all the directories here in your `~/.vim`
+directory.
 
 ### Step 2
-To install the filetype reconizer, we just need to make sure that the contents of `filetype.vim` are executed when Vim starts up. A flexible way to do this is to append `filetype.vim` to `~/.vim/filetype.vim`, creating the file if needed:
-
-```
-cat filetype.vim >> ~/.vim/filetype.vim
-```
-
-Vim automatically executes this file when it starts up.
-
-### Step 3
 If you haven't done so already, add
 
 ```
@@ -31,6 +32,10 @@ syntax on
 ```
 
 to `~/.vimrc` as well.
+
+### Other
+This package *may* also run with other package managers like [Pathogen](https://github.com/tpope/vim-pathogen) or
+[Vundle](https://github.com/gmarik/vundle), but it is still not tested.
 
 
 Credits
@@ -41,4 +46,3 @@ Credits
 [Renpy]: http://www.renpy.org/
 [SC renpy.vim]: http://spikycaterpillar.com/renpy.vim
 [D vim-renpy]: https://github.com/disolovyov/vim-renpy
-
