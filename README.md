@@ -41,8 +41,14 @@ This package *may* also run with other package managers like [Pathogen](https://
 Credits
 -------
 * Based on Spiky Caterpillar's [renpy.vim][SC renpy.vim]
-* Modifications from [disolovyov's vim-renpy][D vim-renpy]
+* Modifications from:
+    * [Civa Lin]
+    * [Dimitry Solovyov]
+    * [Jezeniel Zapanta]
 
 [Renpy]: http://www.renpy.org/
 [SC renpy.vim]: http://spikycaterpillar.com/renpy.vim
-[D vim-renpy]: https://github.com/disolovyov/vim-renpy
+[Civa Lin]: https://bitbucket.org/civalin/
+[Dimitry Solovyov]: https://github.com/disolovyov
+[Jezeniel Zapanta]: https://github.com/jezenielzapanta
+
