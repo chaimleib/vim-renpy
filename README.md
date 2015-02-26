@@ -13,6 +13,12 @@ Just add the following line in your `.vimrc`:
 NeoBundle 'chaimleib/vim-renpy'
 ```
 
+### [Pathogen](https://github.com/tpope/vim-pathogen)
+
+```
+git clone https://github.com/chaimleib/vim-renpy ~/.vim/bundle/vim-renpy
+```
+
 ### Manual Installation
 There are three components to installing a Vim syntax file:
 
@@ -34,7 +40,7 @@ syntax on
 to `~/.vimrc` as well.
 
 ### Other
-This package *may* also run with other package managers like [Pathogen](https://github.com/tpope/vim-pathogen) or
+This package *may* also run with other package managers like 
 [Vundle](https://github.com/gmarik/vundle), but it is still not tested.
 
 
